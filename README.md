@@ -5,4 +5,4 @@ CommandHelper-CrazyLogin
 returns true if the given player is registered.
 
 ### array crazylogin\_is\_loggedIn( playername ):
-returns true if the given player is loggedIn.
+returns true if the given player is logged in.
