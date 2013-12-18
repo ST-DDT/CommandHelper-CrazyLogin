@@ -220,7 +220,7 @@ public class CHCrazyLogin
 		@Override
 		public Boolean runAsync()
 		{
-			return false;
+			return null;
 		}
 
 		@Override
