@@ -117,7 +117,7 @@ public class CHCrazyLogin
 				throw new ConfigRuntimeException("Invalid arguments. Use playername", ExceptionType.FormatException, t);
 			else if (args[0] instanceof CString)
 			{
-				final Player player = Bukkit.getPlayer(args[0].val());
+				final Player player = Bukkit.getPlayerExact(args[0].val());
 				if (player == null)
 					return new CBoolean(false, t);
 				else
