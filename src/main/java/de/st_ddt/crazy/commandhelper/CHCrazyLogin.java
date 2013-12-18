@@ -17,6 +17,7 @@ import com.laytonsmith.core.functions.AbstractFunction;
 import com.laytonsmith.core.functions.Exceptions.ExceptionType;
 
 import de.st_ddt.crazylogin.CrazyLogin;
+import de.st_ddt.crazylogin.data.LoginPlayerData;
 
 public class CHCrazyLogin
 {
@@ -47,16 +48,19 @@ public class CHCrazyLogin
 	public static class crazylogin_is_registered extends AbstractFunction
 	{
 
+		@Override
 		public String getName()
 		{
 			return "crazylogin_is_registered";
 		}
 
+		@Override
 		public Integer[] numArgs()
 		{
 			return new Integer[] { 1 };
 		}
 
+		@Override
 		public Construct exec(final Target t, final Environment env, final Construct... args) throws ConfigRuntimeException
 		{
 			Static.checkPlugin("CrazyLogin", t);
@@ -69,26 +73,31 @@ public class CHCrazyLogin
 				throw new ConfigRuntimeException("Invalid arguments. Use playername", ExceptionType.FormatException, t);
 		}
 
+		@Override
 		public ExceptionType[] thrown()
 		{
 			return new ExceptionType[] { ExceptionType.InvalidPluginException };
 		}
 
+		@Override
 		public boolean isRestricted()
 		{
 			return true;
 		}
 
+		@Override
 		public Boolean runAsync()
 		{
 			return null;
 		}
 
+		@Override
 		public String docs()
 		{
 			return "boolean {playername} returns true if the player is registered.";
 		}
 
+		@Override
 		public CHVersion since()
 		{
 			return CHVersion.V3_3_1;
@@ -99,16 +108,19 @@ public class CHCrazyLogin
 	public static class crazylogin_is_loggedIn extends AbstractFunction
 	{
 
+		@Override
 		public String getName()
 		{
 			return "crazylogin_is_loggedIn";
 		}
 
+		@Override
 		public Integer[] numArgs()
 		{
 			return new Integer[] { 1 };
 		}
 
+		@Override
 		public Construct exec(final Target t, final Environment env, final Construct... args) throws ConfigRuntimeException
 		{
 			Static.checkPlugin("CrazyLogin", t);
@@ -127,26 +139,97 @@ public class CHCrazyLogin
 				throw new ConfigRuntimeException("Invalid arguments. Use playername", ExceptionType.FormatException, t);
 		}
 
+		@Override
 		public ExceptionType[] thrown()
 		{
 			return new ExceptionType[] { ExceptionType.InvalidPluginException };
 		}
 
+		@Override
 		public boolean isRestricted()
 		{
 			return true;
 		}
 
+		@Override
 		public Boolean runAsync()
 		{
 			return false;
 		}
 
+		@Override
 		public String docs()
 		{
 			return "boolean {playername} returns true if the player is logged in.";
 		}
 
+		@Override
+		public CHVersion since()
+		{
+			return CHVersion.V3_3_1;
+		}
+	}
+
+	@api
+	public static class crazylogin_check_password extends AbstractFunction
+	{
+
+		@Override
+		public String getName()
+		{
+			return "crazylogin_check_password";
+		}
+
+		@Override
+		public Integer[] numArgs()
+		{
+			return new Integer[] { 2 };
+		}
+
+		@Override
+		public Construct exec(final Target t, final Environment env, final Construct... args) throws ConfigRuntimeException
+		{
+			Static.checkPlugin("CrazyLogin", t);
+			final CrazyLogin login = CrazyLogin.getPlugin();
+			if (args.length != 2)
+				throw new ConfigRuntimeException("Invalid arguments. Use playername password", ExceptionType.FormatException, t);
+			else if (args[0] instanceof CString && args[1] instanceof CString)
+			{
+				final LoginPlayerData data = login.getPlayerData(((CString) args[0]).val());
+				if (data == null)
+					return new CBoolean(false, t);
+				else
+					return new CBoolean(data.isPassword(((CString) args[1]).val()), t);
+			}
+			else
+				throw new ConfigRuntimeException("Invalid arguments. Use playername password", ExceptionType.FormatException, t);
+		}
+
+		@Override
+		public ExceptionType[] thrown()
+		{
+			return new ExceptionType[] { ExceptionType.InvalidPluginException };
+		}
+
+		@Override
+		public boolean isRestricted()
+		{
+			return true;
+		}
+
+		@Override
+		public Boolean runAsync()
+		{
+			return false;
+		}
+
+		@Override
+		public String docs()
+		{
+			return "boolean {playername, password} returns true if the player's password matches the given password.";
+		}
+
+		@Override
 		public CHVersion since()
 		{
 			return CHVersion.V3_3_1;
