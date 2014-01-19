@@ -27,36 +27,41 @@
 	</prerequisites>
 
 	<dependencies>
+		<!-- Bukkit -->
 		<dependency>
 			<groupId>org.bukkit</groupId>
 			<artifactId>bukkit</artifactId>
 			<version>1.6.4-R1.0</version>
 			<type>jar</type>
 		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.11</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.sk89q</groupId>
-			<artifactId>commandhelper</artifactId>
-			<version>3.3.1-SNAPSHOT</version>
-		</dependency>
+		<!-- Crazy -->
 		<dependency>
 			<groupId>de.st_ddt.crazy</groupId>
 			<artifactId>CrazyCore</artifactId>
-			<version>10.8</version>
+			<version>10.8-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>de.st_ddt.crazy</groupId>
 			<artifactId>CrazyLogin</artifactId>
 			<version>7.21</version>
 		</dependency>
+		<!-- Other Plugins -->
+		<dependency>
+			<groupId>com.sk89q</groupId>
+			<artifactId>commandhelper</artifactId>
+			<version>3.3.1-SNAPSHOT</version>
+		</dependency>
+		<!-- Others -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<repositories>
+		<!-- Bukkit -->
 		<repository>
 			<id>bukkit-repo</id>
 			<url>http://repo.bukkit.org/content/groups/public</url>
