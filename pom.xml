@@ -5,10 +5,10 @@
 	<prerequisites>
 		<maven>2.2.1</maven>
 	</prerequisites>
-	
+
 	<groupId>de.st_ddt.crazy.commandhelper</groupId>
 	<artifactId>CommandHelper_CrazyLogin</artifactId>
-	<version>1.1</version>
+	<version>1.2</version>
 	<packaging>jar</packaging>
 
 	<name>CommandHelper_CrazyLogin</name>
@@ -38,7 +38,7 @@
 		<dependency>
 			<groupId>de.st_ddt.crazy</groupId>
 			<artifactId>CrazyCore</artifactId>
-			<version>10.8-SNAPSHOT</version>
+			<version>10.7.7</version>
 		</dependency>
 		<dependency>
 			<groupId>de.st_ddt.crazy</groupId>
@@ -66,6 +66,11 @@
 			<id>bukkit-repo</id>
 			<url>http://repo.bukkit.org/content/groups/public</url>
 		</repository>
+		<!-- Other Plugins -->
+		<repository>
+			<id>sk89q-mvn2</id>
+			<url>http://maven.sk89q.com/repo/</url>
+		</repository>
 	</repositories>
 
 	<scm>
@@ -88,6 +93,15 @@
 				<configuration>
 					<source>1.7</source>
 					<target>1.7</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<outputDirectory>.</outputDirectory>
+					<finalName>${project.name}</finalName>
 				</configuration>
 			</plugin>
 		</plugins>

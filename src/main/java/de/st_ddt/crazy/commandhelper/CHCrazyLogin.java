@@ -3,8 +3,9 @@ package de.st_ddt.crazy.commandhelper;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
+import com.laytonsmith.PureUtilities.SimpleVersion;
+import com.laytonsmith.PureUtilities.Version;
 import com.laytonsmith.annotations.api;
-import com.laytonsmith.annotations.startup;
 import com.laytonsmith.core.CHVersion;
 import com.laytonsmith.core.Static;
 import com.laytonsmith.core.constructs.CBoolean;
@@ -13,17 +14,19 @@ import com.laytonsmith.core.constructs.Construct;
 import com.laytonsmith.core.constructs.Target;
 import com.laytonsmith.core.environments.Environment;
 import com.laytonsmith.core.exceptions.ConfigRuntimeException;
+import com.laytonsmith.core.extensions.AbstractExtension;
+import com.laytonsmith.core.extensions.MSExtension;
 import com.laytonsmith.core.functions.AbstractFunction;
 import com.laytonsmith.core.functions.Exceptions.ExceptionType;
 
 import de.st_ddt.crazylogin.CrazyLogin;
 import de.st_ddt.crazylogin.data.LoginPlayerData;
 
-public class CHCrazyLogin
+@MSExtension("CHCrazyLogin")
+public class CHCrazyLogin extends AbstractExtension
 {
 
-	@startup
-	public static void onEnable()
+	public void onEnable()
 	{
 		try
 		{
@@ -31,7 +34,7 @@ public class CHCrazyLogin
 		}
 		catch (final Exception e)
 		{
-			System.out.println("[CommandHelper] CHCrazyLogin Could not find CrazyCore please make sure you have it installed.");
+			System.err.println("[CommandHelper] CHCrazyLogin Could not find CrazyCore please make sure you have it installed.");
 		}
 		try
 		{
@@ -39,9 +42,21 @@ public class CHCrazyLogin
 		}
 		catch (final Exception e)
 		{
-			System.out.println("[CommandHelper] CHCrazyLogin Could not find CrazyLogin please make sure you have it installed.");
+			System.err.println("[CommandHelper] CHCrazyLogin Could not find CrazyLogin please make sure you have it installed.");
 		}
 		System.out.println("[CommandHelper] CHCrazyLogin Initialized - Crazy");
+	}
+
+	@Override
+	public void onShutdown()
+	{
+		System.out.println("[CommandHelper] CHCrazyLogin Shutdown - Crazy");
+	}
+
+	@Override
+	public Version getVersion()
+	{
+		return new SimpleVersion(1, 2, 0);
 	}
 
 	@api
