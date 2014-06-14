@@ -83,7 +83,7 @@ public class CHCrazyLogin extends AbstractExtension
 			if (args.length != 1)
 				throw new ConfigRuntimeException("Invalid arguments. Use playername", ExceptionType.FormatException, t);
 			else if (args[0] instanceof CString)
-				return new CBoolean(login.hasPlayerData(args[0].val()), t);
+				return CBoolean.GenerateCBoolean(login.hasPlayerData(args[0].val()), t);
 			else
 				throw new ConfigRuntimeException("Invalid arguments. Use playername", ExceptionType.FormatException, t);
 		}
@@ -146,9 +146,9 @@ public class CHCrazyLogin extends AbstractExtension
 			{
 				final Player player = Bukkit.getPlayerExact(args[0].val());
 				if (player == null)
-					return new CBoolean(false, t);
+					return CBoolean.GenerateCBoolean(false, t);
 				else
-					return new CBoolean(login.isLoggedIn(player), t);
+					return CBoolean.GenerateCBoolean(login.isLoggedIn(player), t);
 			}
 			else
 				throw new ConfigRuntimeException("Invalid arguments. Use playername", ExceptionType.FormatException, t);
@@ -212,9 +212,9 @@ public class CHCrazyLogin extends AbstractExtension
 			{
 				final LoginPlayerData data = login.getPlayerData(((CString) args[0]).val());
 				if (data == null)
-					return new CBoolean(false, t);
+					return CBoolean.GenerateCBoolean(false, t);
 				else
-					return new CBoolean(data.isPassword(((CString) args[1]).val()), t);
+					return CBoolean.GenerateCBoolean(data.isPassword(((CString) args[1]).val()), t);
 			}
 			else
 				throw new ConfigRuntimeException("Invalid arguments. Use playername password", ExceptionType.FormatException, t);

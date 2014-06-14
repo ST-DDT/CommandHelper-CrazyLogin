@@ -8,7 +8,7 @@
 
 	<groupId>de.st_ddt.crazy.commandhelper</groupId>
 	<artifactId>CommandHelper_CrazyLogin</artifactId>
-	<version>1.2</version>
+	<version>1.3.0</version>
 	<packaging>jar</packaging>
 
 	<name>CommandHelper_CrazyLogin</name>
